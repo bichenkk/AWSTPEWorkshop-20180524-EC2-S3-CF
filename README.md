@@ -58,13 +58,14 @@ Click the image link, you will find the request was failed because AccessDenied.
 Now we are going into second phase, create cloudfront to distribute your static assets, and also help to speed it up globally.
 
 ### Step 6:
-Manually create a Cloudfront Distribution - AWS Console > Cloudfront 
-6-1 : Create Distribution > Web
-Origin Domain Name > - Amazon S3 Bucket - > THE_BUCKETNAME_IN_THIS_WORKSHOP.s3.amazonaws.com
-Restrict Bucket Access > Yes
-Origin Access Identity > Use an Existing Identity
-Your Identities > access-identity-
-Grant Read Permissions on Bucket > Yes, Update Bucket Policy
-And leave all the other as default > Create Distribution.
+####Manually create a Cloudfront Distribution 
+
+* AWS Console > Cloudfront > Create Distribution > Web
+* Origin Domain Name > - Amazon S3 Bucket - > THE_BUCKETNAME_IN_THIS_WORKSHOP.s3.amazonaws.com
+* Restrict Bucket Access > Yes
+* Origin Access Identity > Use an Existing Identity
+* Your Identities > access-identity-
+* Grant Read Permissions on Bucket > Yes, Update Bucket Policy
+* And leave all the other as default > Create Distribution.
 
 It will take about 15-20 minutes to create this distribution, we can take a break and get a coffee now.
