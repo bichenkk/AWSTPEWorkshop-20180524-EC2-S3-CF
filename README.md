@@ -1,7 +1,7 @@
 ![AWS Workshop Series](http://d4r6ocegxjghf.cloudfront.net/AWSWorkShopSeries.jpg)
 
 # AWS Workshop Series (2018-05-24) EC2-S3-Cloudfront
-### Repo:AWSWorkshop-20180524-EC2-S3-CF
+### Repo: [https://github.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF]
 
 Today we are going to practice a very simple scenario, leverage Cloudfront for your S3 data source. 
 This is a very common usage when your website serving static assets globalwised.
@@ -45,9 +45,10 @@ wget https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/sydney.jpg
 
 ### Step 5:
 #### Copy image file from EC2 to S3, separate the static asset out of EC2.
-* use awscli in your EC2 shell environment
 * check the awscli column on the cloudformation output sheet. And you will see a message like this:
 ```   aws s3 cp sydney.jpg s3://xxxxxxxxx/ ```
+* run this command in your EC2 shell, and you will find a simple response like:
+![AWS Workshop Series - awsclicptos3](http://d4r6ocegxjghf.cloudfront.net/awsclicptoS3.png)
 
 * Now, open the AWS console and check the S3, you will find the target bucket is there, and the image file sydney.jpg is also there.
 
