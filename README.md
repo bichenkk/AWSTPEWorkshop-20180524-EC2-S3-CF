@@ -51,11 +51,15 @@ wget https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/sydney.jpg
 ![AWS Workshop Series - awsclicptos3](http://d4r6ocegxjghf.cloudfront.net/awsclicptoS3.png)
 
 * Now, open the AWS console and check the S3, you will find the target bucket is there, and the image file sydney.jpg is also there.
+![AWS Workshop Series - imageins3bucket](http://d4r6ocegxjghf.cloudfront.net/imageins3bucket.png)
 
 Click on the file and check the detail, you can find a link for this image.
+![AWS Workshop Series - imageins3bucketlink](http://d4r6ocegxjghf.cloudfront.net/imageins3bucketlink.png)
 
 Click the image link, you will find the request was failed because AccessDenied.
+![AWS Workshop Series - AccessDenied](http://d4r6ocegxjghf.cloudfront.net/AccessDenied.png)
 
+No worry, that's what exactly we want to see: To put static assets into S3 bucket, and serve the request through cloudfront.
 Now we are going into second phase, create cloudfront to distribute your static assets, and also help to speed it up globally.
 
 ### Step 6:
