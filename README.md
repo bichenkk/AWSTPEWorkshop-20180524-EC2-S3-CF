@@ -107,6 +107,8 @@ b. An On-Demand Video Streaming Page.
 
 
 ### Track a:
+You might want to know how exactly we separate the static asset on a online website, like WordPress.
+1. Install the WordPress from sketch on EC2, which will require mysql-server, PHP, and also the Wordpress source code.
 ```
 install mysql-server on your EC2
 you might need:
@@ -127,22 +129,32 @@ mysql> create user wordpress@'localhost' identified by 'password';
 mysql> grant all privileges onto wordpress.* to wordpress@'localhost';
 mysql> flush privileges;
 mysql> exit;
-
-Then make sure all the configurate was aligned with /var/www/html/WordPress/wp-config.php
-Now you can check with your wordpress page, see the wp-admin console.
-
-Then, install a wordpress plug-in CDN Enabler, put YOUR_CF_DOMAIN into Plug-in Setting.
-You can find this plug-in will redirect wp-content,wp-include to cloudfront distribution, so don't forget to dump the static assets to S3 bucket. The command is pretty much like what we did in step 5:
-> aws s3 cp wp-content s3://YOUR_S3_BUCKET/ --recursive
-
-And then, you can find all the assets traffic been redirected as what we did in our workshop.
 ```
+2. And then make sure all the configurate was aligned with /var/www/html/WordPress/wp-config.php
+Now you can check with your wordpress page, see the wp-admin console.
+3. Next, install a wordpress plug-in `CDN Enabler`, put `YOUR_CF_DOMAIN` into Plug-in Setting.
+You can find this plug-in will redirect wp-content,wp-include to cloudfront distribution, so don't forget to dump the static assets to S3 bucket. The command is pretty much like what we did in step 5:
+```
+> aws s3 cp wp-content s3://YOUR_S3_BUCKET/ --recursive
+```
+4. Finally, you can find all the assets traffic been redirected as what we did in our workshop.
+
 
 ### track b:
-```
-To build up a webpage for online streaming, you might need:
-1. Create one more cloudfront distribution with RTMP option.
-2. Get a mp4 file from somewhere like http://file-examples.com/index.php/sample-video-files/sample-mp4-files/ or own by your self. Put it onto your S3 bucket.
-3. Build your own online player page  with the instruction on  https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/TutorialStreamingJWPlayer.html
-4. Check your online player work or not.
-```
+
+To build up a cloudfront distribution for online streaming, you might need:
+1. Create one more cloudfront distribution with RTMP option, you can either create a new bucket to serve the data or just put it into the same bucket we created for this workshop.
+2. Get a mp4 file from somewhere like ```http://file-examples.com/index.php/sample-video-files/sample-mp4-files/``` or own by your self. Put it onto your S3 bucket.
+3. Now, you can verify the rtmp streaming using existed streaming player. We take VLC player on mac for example:
+   VLC > File > Open Network > ```rtmp://MY_S3_BUCKET_FOR_RTMP_CF```/cfx/st/```THE_MP4_FILENAME.mp4 ```
+   * Please remember we need to put /cfx/st/ between distribution site and file name. You can refer to [https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Streaming_URLs.html]
+4. If you want to build your own online player page, you can follow the instruction on  [https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/TutorialStreamingJWPlayer.html]
+ , and then check your online player work or not. Recently we know that rtmp will require flash player, so it might get you some time to get a browser that still support flash-player.
+
+
+### Note:
+In particular scenario, we might face some cross origin reference (CORS) permission issue, then we need to take a look on following page:
+* https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html
+* https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/header-caching.html#header-caching-web-cors
+* And it mentioned "Configure CloudFront to forward the following headers: Origin, Access-Control-Request-Headers, and Access-Control-Request-Method."
+
