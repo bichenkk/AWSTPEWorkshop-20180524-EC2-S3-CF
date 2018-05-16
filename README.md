@@ -1,4 +1,4 @@
-![AWS Workshop Series](http://d4r6ocegxjghf.cloudfront.net/AWSWorkShopSeries.jpg)
+![AWS Workshop Series](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/AWSWorkShopSeries.jpg)
 
 # AWS Workshop Series (2018-05-24) EC2-S3-Cloudfront
 ### Repo: [https://github.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF]
@@ -53,17 +53,17 @@ sudo wget https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/sydney.jp
 * check the awscli column on the cloudformation output sheet. And you will see a message like this:
 ```   aws s3 cp sydney.jpg s3://xxxxxxxxx/ ```
 * run this command in your EC2 shell, and you will find a simple response like:
-![AWS Workshop Series - awsclicptos3](http://d4r6ocegxjghf.cloudfront.net/awsclicptoS3.png)
+![AWS Workshop Series - awsclicptos3](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/awsclicptoS3.png)
 
 * Now, chekc the image file sydney.jpg is in S3 bucket.
 * AWS Cosole > S3 > `YOUR_S3_BUCKET` 
-![AWS Workshop Series - imageins3bucket](http://d4r6ocegxjghf.cloudfront.net/imageins3bucket.png)
+![AWS Workshop Series - imageins3bucket](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/imageins3bucket.png)
 
 Click on the file and check the detail, you can find a link for this image.
-![AWS Workshop Series - imageins3bucketlink](http://d4r6ocegxjghf.cloudfront.net/imageins3bucketlink.png)
+![AWS Workshop Series - imageins3bucketlink](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/imageins3bucketlink.png)
 
 Click the image link, you will find the request was failed because AccessDenied.
-![AWS Workshop Series - AccessDenied](http://d4r6ocegxjghf.cloudfront.net/AccessDenied.png)
+![AWS Workshop Series - AccessDenied](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/AccessDenied.png)
 
 No worry, that's what exactly we want to see: To put static assets into S3 bucket, and serve the request through cloudfront.
 Now we are going into second phase, create cloudfront to distribute your static assets, and also help to speed it up globally.
@@ -87,7 +87,7 @@ It will take about 15-20 minutes to create this distribution, we can take a brea
 * Find the domain name for your cloudfront distribution
 * AWS Console > Cloudfront > Distributions > `YOUR_CF_DISTRIBUTION` > Domain Name
 * Try to open the image through browser http://`YOUR_CF_DOAMIN`/sydney.jpg , and please check the developer tool with the network request/response, expend the response header, you could find the information like this:
-![AWS Workshop Series - ImageCFCacheHit](http://d4r6ocegxjghf.cloudfront.net/imagecfcachehit.png)
+![AWS Workshop Series - ImageCFCacheHit](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/imagecfcachehit.png)
 And there is an header saying:  `X-Cache: Hit from cloudfront` , which telling you now the traffice started from S3, and through delivered through cloudfront distribution.
 
 #### To verify if that really different? (Optional)
