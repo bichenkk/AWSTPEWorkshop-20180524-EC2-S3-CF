@@ -41,8 +41,9 @@ https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/ec2-s3-iamrole.yaml
 * install httpd service on EC2, and prepare the image file for serving.
 ```
 sudo yum install httpd
+sudo service httpd start
 cd /var/www/html/
-wget https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/sydney.jpg
+sudo wget https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/sydney.jpg
 ```
 * Now you might want to test your httpd image serving status by using browser, open
 ``` http://XXX.XXX.XXX.XXX/sydney.jpg ```
