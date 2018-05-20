@@ -195,3 +195,9 @@ In particular scenario, we might face some cross origin reference (CORS) permiss
 * https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/header-caching.html#header-caching-web-cors
 * And it mentioned "Configure CloudFront to forward the following headers: Origin, Access-Control-Request-Headers, and Access-Control-Request-Method."
 
+## After Workshop
+1. Disable the Cloudfront distribution for this workshop.
+2. Delete the distribution for this workshop.
+3. Delete files in S3 bucket for this workshop.
+4. Delete ALB and Target Group for this workshop.
+5. Go to Cloudformation and delete stack.
