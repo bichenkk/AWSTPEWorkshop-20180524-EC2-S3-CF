@@ -30,9 +30,8 @@ Switch Region on the AWS console, a drag down menu near right-up corner.
 
 ### Step 3:
 * Create cloudformation stack: Cloudformation > Create Stack > from S3 template >
-https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/ec2-s3-iamrole.yaml
-* 
-* And wait till the stack creation ready, the status will change to `CREATE_COMPLETE`
+https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/cloudformation-workshop-20180524-ec2-s3.json
+* Wait till the stack creation ready, the status will change to `CREATE_COMPLETE`
 * you can see the output sheet:
 * Then you can use the command to sign into your EC2.
 ``` ssh ec2-user@XXX.XXX.XXX.XXX -i XXXXXX.pem ```
@@ -50,8 +49,10 @@ sudo wget https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/sydney.jp
 
 ### Step 5:
 #### Copy image file from EC2 to S3, separate the static asset out of EC2.
-* check the awscli column on the cloudformation output sheet. And you will see a message like this:
-```   aws s3 cp sydney.jpg s3://xxxxxxxxx/ ```
+* check the s3 column on the cloudformation output sheet. You can find the S3 domain-name looks like `YOUR_S3_BUCKET_NAME`.s3.amazonaws.com.
+
+* Then execute following command in your EC2, which will copy the image into your s3 bucket.
+####   aws s3 cp sydney.jpg s3://```YOUR_S3_BUCKET_NAME```/ 
 * run this command in your EC2 shell, and you will find a simple response like:
 ![AWS Workshop Series - awsclicptos3](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/awsclicptoS3.png)
 
@@ -89,6 +90,39 @@ It will take about 15-20 minutes to create this distribution, we can take a brea
 * Try to open the image through browser http://`YOUR_CF_DOAMIN`/sydney.jpg , and please check the developer tool with the network request/response, expend the response header, you could find the information like this:
 ![AWS Workshop Series - ImageCFCacheHit](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/imagecfcachehit.png)
 And there is an header saying:  `X-Cache: Hit from cloudfront` , which telling you now the traffice started from S3, and through delivered through cloudfront distribution.
+
+### Step 8:
+#### Create Multi-Origin and Behaviors
+* Now, you roughly know how it works to cache the image at cloudfront edge, but you wonder if we can simple cache everything from EC2?
+* AWS Console > EC2 > Instances > ```YOUR_EC2_INSTANCE``` > Availability Zone (Remember this)
+* AWS Console > EC2 > Load Balancer > Create Load Balancer > Application Load Balancer > Click Create > Input Load Balancer Name, and remember to click the ```same Availability Zone``` with the EC2.
+* Click next till Step 3: Configure Security Groups > Create a new security group > Make Security Group Name=MyLabSecurityGroup, Type=HTTP, Port=80, Source=0.0.0.0/0
+* Click next to Step 4: Configure Routing > Make Target group = New Target Group, Target Group Name=MyLabTragetGroup then click Next.
+* Clieck next to Step 5: Register Targets > You will see there is available EC2 for you to register into Target Group.
+> Click the checkbox of the EC2 > Add to Register > Click Next 
+* At the review page, click Create. Now you have a load balancer with EC2 attached.
+
+* Go back to CloudFront distribution > Origin > Create Origin > Click the Origin Domain, you can find a new entity point to your new created Load Balancer > Create.
+
+* Cloudfront distribution > Behavior > Create Behavior > Path Pattern=`*.php`, Origin=`ELB-XXXXXXXXXX` > Create.
+* Now, switch back to your EC2 console
+```
+cd /var/www/html/
+wget https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/index.php
+```
+And use VIM or Nano to edit the index.php
+```
+nano index.php
+```
+modify the $CF_DISTRIBUTE=```XXXXXXXXX``` with your Cloudfront Distribution domain name ```YOUR_CF_DOMAIN```.
+```
+Ctrl + O to Save
+Ctrl + X to Exit
+```
+
+* Use browser to check http://```YOUR_CF_DOMAIN```/index.php
+
+
 
 #### To verify if that really different? (Optional)
 * You might already know that: S3 can also serve the web page and image, why should I circle this to use one more service? Now you can start to do an experiment: Try to access the image in S3 directly, and compare the access speed.
