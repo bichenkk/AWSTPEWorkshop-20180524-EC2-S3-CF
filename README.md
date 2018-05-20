@@ -91,6 +91,13 @@ It will take about 15-20 minutes to create this distribution, we can take a brea
 ![AWS Workshop Series - ImageCFCacheHit](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/imagecfcachehit.png)
 And there is an header saying:  `X-Cache: Hit from cloudfront` , which telling you now the traffice started from S3, and through delivered through cloudfront distribution.
 
+
+#### To verify if that really different? (Optional)
+* You might already know that: S3 can also serve the web page and image, why should I circle this to use one more service? Now you can start to do an experiment: Try to access the image in S3 directly, and compare the access speed.
+* AWS Cosole > S3 > `YOUR_S3_BUCKET` > Click on the image > Make Public
+* And then get the link on the image detail, and try again on your browser. 
+* Through the developer tool, you can compare with the speed. (If you did choose the long distance region for your source.)
+
 ### Step 8:
 #### Create Multi-Origin and Behaviors
 * Now, you roughly know how it works to cache the image at cloudfront edge, but you wonder if we can simple cache everything from EC2?
@@ -98,8 +105,7 @@ And there is an header saying:  `X-Cache: Hit from cloudfront` , which telling y
 * AWS Console > EC2 > Load Balancer > Create Load Balancer > Application Load Balancer > Click Create > Input Load Balancer Name, and remember to click the ```same Availability Zone``` with the EC2.
 * Click next till Step 3: Configure Security Groups > Create a new security group > Make Security Group Name=MyLabSecurityGroup, Type=HTTP, Port=80, Source=0.0.0.0/0
 * Click next to Step 4: Configure Routing > Make Target group = New Target Group, Target Group Name=MyLabTragetGroup then click Next.
-* Clieck next to Step 5: Register Targets > You will see there is available EC2 for you to register into Target Group.
-> Click the checkbox of the EC2 > Add to Register > Click Next 
+* Clieck next to Step 5: Register Targets > You will see there is available EC2 for you to register into Target Group. > Click the checkbox of the EC2 > Add to Register > Click Next 
 * At the review page, click Create. Now you have a load balancer with EC2 attached.
 
 * Go back to CloudFront distribution > Origin > Create Origin > Click the Origin Domain, you can find a new entity point to your new created Load Balancer > Create.
@@ -124,11 +130,7 @@ Ctrl + X to Exit
 
 
 
-#### To verify if that really different? (Optional)
-* You might already know that: S3 can also serve the web page and image, why should I circle this to use one more service? Now you can start to do an experiment: Try to access the image in S3 directly, and compare the access speed.
-* AWS Cosole > S3 > `YOUR_S3_BUCKET` > Click on the image > Make Public
-* And then get the link on the image detail, and try again on your browser. 
-* Through the developer tool, you can compare with the speed. (If you did choose the long distance region for your source.)
+
 
 ## Till here, you already know how to separate your static asset onto S3 and leverage Cloudfront for global distribution. 
 ### What's next?
