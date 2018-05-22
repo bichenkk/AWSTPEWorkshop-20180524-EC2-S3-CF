@@ -22,19 +22,20 @@ Switch Region on the AWS console, a drag down menu near right-up corner.
 * Tokyo(ap-northeast-1)
 * Sydney(ap-southeast-2) 
 * London(eu-west-2)
+
 ``` If possible, choose the region which geographically opposite to you on this planet.```
 
 ### Step 2:
 * Check if you already have a EC2 Key pair in your selected region. 
-* If not, select EC2 > Key Pairs > Create Key Pair. 
+* If not, create one through **AWS Console > EC2 > Key Pairs > Create Key Pair**. 
 * Remember to download the private key(.pem) and well saved. 
 * In usual, we will move it into ~/.ssh/ sub-folder in your home directory.
 * To make it secure, remeber to change the privilege with command 
 ``` chmod 0400 XXXXX.pem ```
 
 ### Step 3:
-* Create cloudformation stack: Cloudformation > Create Stack > from S3 template >
-https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/cloudformation-workshop-20180524-ec2-s3.json
+* Create cloudformation stack: **AWS Console > Cloudformation > Create Stack > from S3 template >
+https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/cloudformation-workshop-20180524-ec2-s3.json**
 * Wait till the stack creation ready, the status will change to `CREATE_COMPLETE`
 * you can see the output sheet:
 * Then you can use the command to sign into your EC2.
@@ -43,7 +44,7 @@ https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/cloudformation-work
 ### Step 4:
 * install httpd service on EC2, and prepare the image file for serving.
 ```
-sudo yum install httpd
+sudo yum install httpd php
 sudo service httpd start
 cd /var/www/html/
 sudo wget https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/sydney.jpg
@@ -53,15 +54,15 @@ sudo wget https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/sydney.jp
 
 ### Step 5:
 #### Copy image file from EC2 to S3, separate the static asset out of EC2.
-* check the s3 column on the cloudformation output sheet. You can find the S3 domain-name looks like `YOUR_S3_BUCKET_NAME`.s3.amazonaws.com.
+* check the **AWS Console > Cloudformation > ```YOUR_STACK``` > Output Sheet > s3 column**. You can find the S3 domain-name looks like `YOUR_S3_BUCKET_NAME`.s3.amazonaws.com.
 
-* Then execute following command in your EC2, which will copy the image into your s3 bucket.
+* Then execute following command in your EC2 shell terminal, which will copy the image into your s3 bucket.
 ####   aws s3 cp sydney.jpg s3://```YOUR_S3_BUCKET_NAME```/ 
 * run this command in your EC2 shell, and you will find a simple response like:
 ![AWS Workshop Series - awsclicptos3](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/awsclicptoS3.png)
 
-* Now, chekc the image file sydney.jpg is in S3 bucket.
-* AWS Cosole > S3 > `YOUR_S3_BUCKET` 
+* Now, check the image file sydney.jpg is uploaded or not from **AWS console > S3 > `YOUR_S3_BUCKET`**
+
 ![AWS Workshop Series - imageins3bucket](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/imageins3bucket.png)
 
 Click on the file and check the detail, you can find a link for this image.
@@ -84,7 +85,7 @@ Now we are going into second phase, create cloudfront to distribute your static 
 * Grant Read Permissions on Bucket > Yes, Update Bucket Policy
 * And leave all the other as default > Create Distribution.
 
-It will take about 15-20 minutes to create this distribution, we can take a break and get a coffee now.
+**It will take about 15-20 minutes to create this distribution, we can take a break and get a coffee now. And we will introduce each of these configurations during the distribution creation time.**
 
 
 ### Step 7:
