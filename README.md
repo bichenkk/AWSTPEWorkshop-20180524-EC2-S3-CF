@@ -1,6 +1,4 @@
-![AWS Workshop Series](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/AWSWorkShopSeries.jpg)
-
-AWS Workshop Series (2018-05-24) EC2-S3-Cloudfront
+Startup Workshop Series (2018-05-24) EC2-S3-Cloudfront
 ======
 ### Repo: [https://github.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF]
 
