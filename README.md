@@ -1,10 +1,13 @@
 ![AWS Workshop Series](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/AWSWorkShopSeries.jpg)
 
-# AWS Workshop Series (2018-05-24) EC2-S3-Cloudfront
+AWS Workshop Series (2018-05-24) EC2-S3-Cloudfront
+======
 ### Repo: [https://github.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF]
 
 Today we are going to practice a very simple scenario, leverage Cloudfront for your S3 data source. 
-This is a very common usage when your website serving static assets globalwised.
+This is a very common usage when your website serving static assets, you put those data into S3 bucket, left those dynamic generated content fall back to EC2.
+
+![AWS Workshop Series - s3originbehavior](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/s3originbehavior.png)
 
 For this workshop, we support 3 different region: 
 * Tokyo(ap-northeast-1)
@@ -12,6 +15,7 @@ For this workshop, we support 3 different region:
 * London(eu-west-2)
 
 We pick these region becase later we will deploy cloudfront distribution, which can obviously see the difference after CDN enabled.
+------
 
 ### Step 1:
 Switch Region on the AWS console, a drag down menu near right-up corner.
@@ -128,10 +132,12 @@ Ctrl + X to Exit
 
 * Use browser to check http://```YOUR_CF_DOMAIN```/index.php
 
+------
 
-
-
-
+**Is it possible to build multi-origin for my website?**
+Yes, to setup a clear **path pattern** for your origin, with correct priority.
+![AWS Workshop Series - s3originbehaviorpattern](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/s3originbehaviorpattern.png)
+======
 ## Till here, you already know how to separate your static asset onto S3 and leverage Cloudfront for global distribution. 
 ### What's next?
 We setup two different option for workshop challenge:
@@ -176,8 +182,8 @@ You can find this plug-in will redirect wp-content,wp-include to cloudfront dist
 ```
 4. Finally, you can find all the assets traffic been redirected as what we did in our workshop.
 
-
-### track b:
+------
+### Track b:
 
 To build up a cloudfront distribution for online streaming, you might need:
 1. Create one more cloudfront distribution with RTMP option, you can either create a new bucket to serve the data or just put it into the same bucket we created for this workshop.
@@ -188,6 +194,7 @@ To build up a cloudfront distribution for online streaming, you might need:
 4. If you want to build your own online player page, you can follow the instruction on  https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/TutorialStreamingJWPlayer.html
  , and then check your online player work or not. Recently we know that rtmp will require flash player, so it might get you some time to get a browser that still support flash-player.
 
+------
 
 ### Note:
 In particular scenario, we might face some cross origin reference (CORS) permission issue, then we need to take a look on following page:
