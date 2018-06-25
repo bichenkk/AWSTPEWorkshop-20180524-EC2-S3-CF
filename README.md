@@ -1,6 +1,5 @@
 Startup Workshop Series (2018-05-24) EC2-S3-Cloudfront
 ======
-### Repo: [https://github.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF]
 
 Today we are going to practice a very simple scenario, leverage Cloudfront for your S3 data source. 
 This is a very common usage when your website serving static assets, you put those data into S3 bucket, left those dynamic generated content fall back to EC2.
@@ -32,7 +31,7 @@ Switch Region on the AWS console, a drag down menu near right-up corner.
 ``` chmod 0400 XXXXX.pem ```
 
 ### Step 3:
-* Create cloudformation stack: **AWS Console > Cloudformation > Create Stack > from S3 template >
+* Create cloudformation stack: **AWS Console > Cloudformation > Create Stack > from URL >
 https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/cloudformation-workshop-20180524-ec2-s3.json**
 * Wait till the stack creation ready, the status will change to `CREATE_COMPLETE`
 * you can see the output sheet:
@@ -78,7 +77,7 @@ Now we are going into second phase, create cloudfront to distribute your static 
 * AWS Console > Cloudfront > Create Distribution > Web
 * Origin Domain Name > - Amazon S3 Bucket - > `THE_BUCKETNAME_IN_THIS_WORKSHOP`.s3.amazonaws.com
 * Restrict Bucket Access > Yes
-* Origin Access Identity > Use an Existing Identity
+* Origin Access Identity > Create New Identity
 * Your Identities > access-identity-
 * Grant Read Permissions on Bucket > Yes, Update Bucket Policy
 * And leave all the other as default > Create Distribution.
@@ -117,11 +116,11 @@ And there is an header saying:  `X-Cache: Hit from cloudfront` , which telling y
 * Now, switch back to your EC2 console
 ```
 cd /var/www/html/
-wget https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/index.php
+sudo wget https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/index.php
 ```
 And use VIM or Nano to edit the index.php
 ```
-nano index.php
+sudo nano index.php
 ```
 modify the $CF_DISTRIBUTE=```XXXXXXXXX``` with your Cloudfront Distribution domain name ```YOUR_CF_DOMAIN```.
 ```
