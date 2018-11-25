@@ -14,13 +14,18 @@ For this workshop, we support 3 different region:
 We pick these region becase later we will deploy cloudfront distribution, which can obviously see the difference after CDN enabled.
 ------
 
-### Step 1:
+### Step 0:
 Switch Region on the AWS console, a drag down menu near right-up corner.
 * Tokyo(ap-northeast-1)
 * Sydney(ap-southeast-2) 
 * London(eu-west-2)
 
 ``` If possible, choose the region which geographically opposite to you on this planet.```
+
+### Step 1:
+* Create an AWS Cloud9, we will use Cloud9 terminal (bottom area of the Cloud9) to perform operations in this lab.
+* In the AWS Console, go to the top left Services, search/click on AWS Cloud9
+* Give the Cloud9 a name, keep everything else the same.
 
 ### Step 2:
 * Check if you already have a EC2 Key pair in your selected region. 
