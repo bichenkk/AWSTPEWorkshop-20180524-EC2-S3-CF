@@ -218,3 +218,4 @@ In particular scenario, we might face some cross origin reference (CORS) permiss
 3. Delete files in S3 bucket for this workshop.
 4. Delete ALB and Target Group for this workshop.
 5. Go to Cloudformation and delete stack.
+6. Go to Cloud9 and delete/turn off the Cloud9 IDE.
