@@ -153,15 +153,19 @@ You might want to know how exactly we separate the static asset on a online webs
 ```
 install mysql-server on your EC2
 you might need:
-yum install mysql mysql-server
+sudo yum install mysql mysql-server
 
 install php related package, you might need:
-yum install php php-mysql php-devel php-gd php-pspell php-xml
-yum install php-common
-yum install php-curl
+sudo yum install php php-mysql php-devel php-gd php-pspell php-xml
+sudo yum install php-common
+sudo yum install php-curl
+
+install git
+you might need:
+sudo yum install git
 
 And then, you might need to clone the wordpress onto your /var/www/html/:
-git clone https://github.com/WordPress/WordPress
+sudo git clone https://github.com/WordPress/WordPress
 
 Create DB for Wordpress:
 >mysql -u root -h localhost
