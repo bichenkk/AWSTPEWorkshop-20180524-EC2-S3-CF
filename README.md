@@ -40,7 +40,7 @@ Switch Region on the AWS console, a drag down menu near right-up corner.
 https://s3-ap-northeast-1.amazonaws.com/workshop-data-public/cloudformation-workshop-20180524-ec2-s3.json**
 * Wait till the stack creation ready, the status will change to `CREATE_COMPLETE`
 * you can see the output sheet:
-* Then you can use the command to sign into your EC2.
+* Then you can use the command to sign into your EC2 from your AWS Cloud9 we created in step 1.
 ``` ssh ec2-user@XXX.XXX.XXX.XXX -i XXXXXX.pem ```
 
 ### Step 4:
