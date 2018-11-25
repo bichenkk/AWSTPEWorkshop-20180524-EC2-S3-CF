@@ -169,7 +169,7 @@ And then, you might need to clone the wordpress onto your /var/www/html/:
 sudo git clone https://github.com/WordPress/WordPress
 
 Create DB for Wordpress:
->mysql -u root -h localhost
+mysql -u root -h localhost
 mysql> CREATE DATABASE wordpress;
 mysql> CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'password';
 mysql> GRANT ALL PRIVILEGES ON wordpress.* TO wordpress@'localhost';
