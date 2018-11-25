@@ -199,7 +199,7 @@ To build up a cloudfront distribution for online streaming, you might need:
 1. Create one more cloudfront distribution with RTMP option, you can either create a new bucket to serve the data or just put it into the same bucket we created for this workshop.
 2. Get a mp4 file from somewhere like ```http://file-examples.com/index.php/sample-video-files/sample-mp4-files/``` or own by your self. Put it onto your S3 bucket.
 3. Now, you can verify the rtmp streaming using existed streaming player. We take VLC player on mac for example:
-   VLC > File > Open Network > ```rtmp://MY_S3_BUCKET<RTMP_CF_DOMAIN>```/cfx/st/```THE_MP4_FILENAME.mp4 ```
+   VLC > File > Open Network > ```rtmp://<RTMP_CF_DOMAIN>```/cfx/st/```THE_MP4_FILENAME.mp4 ```
    * Please remember we need to put /cfx/st/ between distribution site and file name. You can refer to https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Streaming_URLs.html
 4. If you want to build your own online player page, you can follow the instruction on  https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/TutorialStreamingJWPlayer.html
  , and then check your online player work or not. Recently we know that rtmp will require flash player, so it might get you some time to get a browser that still support flash-player.
