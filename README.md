@@ -154,6 +154,7 @@ You might want to know how exactly we separate the static asset on a online webs
 install mysql-server on your EC2
 you might need:
 sudo yum install mysql mysql-server
+sudo /sbin/service mysqld start
 
 install php related package, you might need:
 sudo yum install php php-mysql php-devel php-gd php-pspell php-xml
@@ -169,10 +170,10 @@ sudo git clone https://github.com/WordPress/WordPress
 
 Create DB for Wordpress:
 >mysql -u root -h localhost
-mysql> create db wordpress;
-mysql> create user wordpress@'localhost' identified by 'password';
-mysql> grant all privileges onto wordpress.* to wordpress@'localhost';
-mysql> flush privileges;
+mysql> CREATE DATABASE wordpress;
+mysql> CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'password';
+mysql> GRANT ALL PRIVILEGES ON wordpress.* TO wordpress@'localhost';
+mysql> FLUSH PRIVILEGES;
 mysql> exit;
 ```
 2. And then make sure all the configurate was aligned with /var/www/html/WordPress/wp-config.php
