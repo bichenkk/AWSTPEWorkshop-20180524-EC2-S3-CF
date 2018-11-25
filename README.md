@@ -113,7 +113,7 @@ And there is an header saying:  `X-Cache: Hit from cloudfront` , which telling y
 * AWS Console > EC2 > Instances > ```YOUR_EC2_INSTANCE``` > Availability Zone (Remember this)
 * AWS Console > EC2 > Load Balancer > Create Load Balancer > Application Load Balancer > Click Create > Input Load Balancer Name, and remember to click the ```same Availability Zone``` with the EC2.
 * Click next till Step 3: Configure Security Groups > Create a new security group > Make Security Group Name=MyLabSecurityGroup, Type=HTTP, Port=80, Source=0.0.0.0/0
-* Click next to Step 4: Configure Routing > Make Target group = New Target Group, Target Group Name=MyLabTragetGroup then click Next.
+* Click next to Step 4: Configure Routing > Make Target group = New Target Group, Target Group Name=MyLabTargetGroup then click Next.
 * Clieck next to Step 5: Register Targets > You will see there is available EC2 for you to register into Target Group. > Click the checkbox of the EC2 > Add to Register > Click Next 
 * At the review page, click Create. Now you have a load balancer with EC2 attached.
 
