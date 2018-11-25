@@ -98,7 +98,6 @@ Now we are going into second phase, create cloudfront to distribute your static 
 * Try to open the image through browser http://`YOUR_CF_DOAMIN`/sydney.jpg , and please check the developer tool with the network request/response, expend the response header, you could find the information like this:
 ![AWS Workshop Series - ImageCFCacheHit](https://raw.githubusercontent.com/juntinyeh/AWSWorkshop-20180524-EC2-S3-CF/master/images/imagecfcachehit.png)
 And there is an header saying:  `X-Cache: Hit from cloudfront` , which telling you now the traffice started from S3, and through delivered through cloudfront distribution.
-* To compare the load time between directly hitting your EC2 server (`<IP ADDRESS>/sydney.jpg`) and going through CloudFront (`<CF DOMAIN>/sydney.jpg`), on Windows use F12 > Network and on Mac use Option + Command + J
 
 
 #### To verify if that really different? (Optional)
@@ -106,6 +105,7 @@ And there is an header saying:  `X-Cache: Hit from cloudfront` , which telling y
 * AWS Cosole > S3 > `YOUR_S3_BUCKET` > Click on the image > Make Public
 * And then get the link on the image detail, and try again on your browser. 
 * Through the developer tool, you can compare with the speed. (If you did choose the long distance region for your source.)
+* To compare the load time between directly hitting your EC2 server (`<IP ADDRESS>/sydney.jpg`) and going through CloudFront (`<CF DOMAIN>/sydney.jpg`), on Windows use F12 > Network and on Mac use Option + Command + J
 
 ### Step 8:
 #### Create Multi-Origin and Behaviors
