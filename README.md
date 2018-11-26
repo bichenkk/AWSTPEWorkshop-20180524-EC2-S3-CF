@@ -184,8 +184,9 @@ mysql> GRANT ALL PRIVILEGES ON wordpress.* TO wordpress@'localhost';
 mysql> FLUSH PRIVILEGES;
 mysql> exit;
 ```
-2. And then make sure all the configurate was aligned with /var/www/html/WordPress/wp-config.php
+2. And then make sure all the configurate was aligned with /var/www/html/blog/wp-config.php
 Now you can check with your wordpress page, see the wp-admin console.
+3. View your new wordpress by visitng `<CF DOMAIN>/blog` and to do setup.
 3. Next, install a wordpress plug-in `CDN Enabler`, put `YOUR_CF_DOMAIN` into Plug-in Setting.
 You can find this plug-in will redirect wp-content,wp-include to cloudfront distribution, so don't forget to dump the static assets to S3 bucket. The command is pretty much like what we did in step 5:
 ```
