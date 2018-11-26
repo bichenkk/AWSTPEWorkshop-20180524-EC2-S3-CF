@@ -156,7 +156,7 @@ b. An On-Demand Video Streaming Page.
 
 ### Track a:
 You might want to know how exactly we separate the static asset on a online website, like WordPress.
-1. Install the WordPress from sketch on EC2, which will require mysql-server, PHP, and also the Wordpress source code.
+1. Install the WordPress from scratch on EC2, which will require mysql-server, PHP, and also the Wordpress source code.
 ```
 install mysql-server on your EC2
 you might need:
