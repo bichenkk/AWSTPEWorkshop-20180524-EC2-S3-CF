@@ -174,6 +174,7 @@ sudo yum install git
 
 And then, you might need to clone the wordpress onto your /var/www/html/:
 sudo git clone https://github.com/WordPress/WordPress
+sudo mv WordPress/ blog
 
 Create DB for Wordpress:
 mysql -u root -h localhost
