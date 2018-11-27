@@ -23,17 +23,16 @@ Switch Region on the AWS console, a drag down menu near right-up corner.
 ``` If possible, choose the region which geographically opposite to you on this planet.```
 
 ### Step 1:
-* Create an AWS Cloud9, we will use Cloud9 terminal (bottom area of the Cloud9) to perform operations in this lab.
+* Create an AWS Cloud9 IDE, we will use Cloud9 terminal (bottom area of the Cloud9) to perform operations in this lab.
 * In the AWS Console, go to the top left Services, search/click on AWS Cloud9
-* Give the Cloud9 a name, keep everything else the same.
+* Give the AWS Cloud9 IDE a name, keep everything else the same.
 
 ### Step 2:
 * Check if you already have a EC2 Key pair in your selected region. 
 * If not, create one through **AWS Console > EC2 > Key Pairs > Create Key Pair**. 
 * Remember to download the private key(.pem) and well saved. 
-* In usual, we will move it into ~/.ssh/ sub-folder in your home directory.
-* To make it secure, remeber to change the privilege with command 
-``` chmod 0400 XXXXX.pem ```
+* We will copy this PEM file into our AWS Cloud9 IDE created in step 1. In your AWS Cloud9 IDE top menu bar go to `File > Upload Local Files...`
+* Once uploaded, in the AWS Cloud9 IDE console (bottom) find this PEM file and run ``` chmod 0400 XXXXX.pem ```
 
 ### Step 3:
 * Create cloudformation stack: **AWS Console > Cloudformation > Create Stack > from URL >
